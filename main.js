@@ -173,17 +173,6 @@ class Sprite {
 
 /* FUNCTIONS */
 
-const createSprites = el => {
-  for (let i = 0; i < el.number; ++i)
-    sprites.push(new Sprite(el))
-}
-
-const loadImages = el => el.urls.forEach(url => {
-  const img = new Image()
-  img.src = url
-  img.addEventListener('load', () => loadedImages++)
-})
-
 const resize = () => {
   width = window.innerWidth
   height = window.innerHeight
@@ -192,17 +181,33 @@ const resize = () => {
   ctx.scale(devicePixelRatio, devicePixelRatio)
 }
 
+const createSprites = el => {
+  for (let i = 0; i < el.number; ++i)
+    sprites.push(new Sprite(el))
+}
+
+const loadImages = el => el.urls.forEach(url => {
+  const img = new Image()
+  img.src = url
+  img.addEventListener('load', () => {
+    if (++loadedImages == totalImages) init()
+  })
+})
+
 /* INIT */
 
 resize()
 elements.forEach(loadImages)
-elements.forEach(createSprites)
+
+function init() {
+  elements.forEach(createSprites)
+  loop()
+}
 
 /* LOOP */
 
-void function loop() {
+function loop() {
   requestAnimationFrame(loop)
-  if (loadedImages != totalImages) return
 
   ctx.clearRect(0, 0, width, height)
   worldRot += dWorldRot
@@ -213,7 +218,7 @@ void function loop() {
     s.rotate(dWorldRot)
     s.render()
   })
-}()
+}
 
 /* EVENTS */
 
