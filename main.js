@@ -80,6 +80,15 @@ const elements = [
       'slike/ndh/avioni/fi156d.png',
     ],
   },
+  {
+    number: 10,
+    range: { x: 10, y: 0.5, z: 10 },
+    origin: { x: 0, y: 1.5, z: 0 },
+    urls: [
+      'slike/nemci/padobranci/padobranac-01.png',
+      'slike/nemci/padobranci/padobranac-03.png',
+    ],
+  },
 ]
 
 const totalImages = elements.reduce((acc, el) => acc + el.urls.length, 0)
