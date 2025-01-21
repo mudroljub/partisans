@@ -1,9 +1,8 @@
 import Vector from "./Vector.js"
 import { elements } from "./data.js"
+import { platno, ctx } from "./platno.js"
 
 const mountains = document.getElementById('sky-box')
-const canvas = document.getElementById('platno')
-const ctx = canvas.getContext('2d')
 
 const randSpread = range => range * (Math.random() - Math.random())
 
@@ -71,12 +70,6 @@ class Sprite {
 
 /* FUNCTIONS */
 
-const resize = () => {
-  canvas.width = window.innerWidth * devicePixelRatio | 0
-  canvas.height = window.innerHeight * devicePixelRatio | 0
-  ctx.scale(devicePixelRatio, devicePixelRatio)
-}
-
 const createSprites = el => {
   for (let i = 0; i < el.number; ++i)
     sprites.push(new Sprite(el))
@@ -92,7 +85,6 @@ const loadImages = el => el.urls.forEach(url => {
 
 /* INIT */
 
-resize()
 elements.forEach(loadImages)
 
 function init() {
@@ -122,5 +114,3 @@ document.addEventListener('mousemove', e => {
   const MOUSE_X = e.clientX - window.innerWidth / 2
   dWorldRot = (-MOUSE_X / window.innerWidth) * sensitivity
 })
-
-window.onresize = resize
