@@ -40,12 +40,14 @@ function loop() {
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
   worldRot += dWorldRot
 
-  mountains.style.backgroundPosition = -((worldRot / Math.PI) * 2) * 100 + '%'
+  mountains.style.backgroundPosition = -(worldRot / Math.PI * 2) * 100 + '%'
 
-  sprites.sort((a, b) => b.v.z - a.v.z).forEach(s => {
-    s.rotate(dWorldRot)
-    s.render()
-  })
+  sprites
+    .sort((a, b) => b.position.z - a.position.z)
+    .forEach(s => {
+      s.rotate(dWorldRot)
+      s.render()
+    })
 }
 
 /* EVENTS */

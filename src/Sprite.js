@@ -13,7 +13,7 @@ export default class Sprite {
     const x = origin.x + randSpread(range.x)
     const y = origin.y + randSpread(range.y)
     const z = origin.z + randSpread(range.z)
-    this.v = new Vector(x, y, z)
+    this.position = new Vector(x, y, z)
 
     this.image = new Image()
     this.image.src = el.urls[(Math.random() * el.urls.length) | 0]
@@ -24,7 +24,7 @@ export default class Sprite {
   }
 
   rotate(ang) {
-    this.v.rotate(ang)
+    this.position.rotate(ang)
   }
 
   outOfBounds(z, x, y, xl, yl) {
@@ -32,14 +32,14 @@ export default class Sprite {
   }
 
   project() {
-    const dz = window.innerHeight / (camera.z - this.v.z)
-    const px = (camera.x + this.v.x) * dz
-    const py = (camera.y + this.v.y) * dz
+    const dz = window.innerHeight / (camera.z - this.position.z)
+    const px = (camera.x + this.position.x) * dz
+    const py = (camera.y + this.position.y) * dz
     return {
       x: px + window.innerWidth / 2,
       y: py + window.innerHeight / 2,
       dz,
-      z: this.v.z
+      z: this.position.z
     }
   }
 
