@@ -4,10 +4,7 @@ html, body, canvas, .gradient, .sky-box {
   height: 100%;
   overflow: hidden;
   position: fixed;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  user-select: none;
   content-zooming: none;
 }
 
@@ -23,7 +20,7 @@ body {
 
 .sky-box {
   z-index: -1;
-  background: url(https://i.pinimg.com/originals/7e/5e/37/7e5e377ede379dbd6c0e42dd58d977f6.png) 0% 0% fixed repeat-x;
+  background: url(slike/planine.png) 0% 0% fixed repeat-x;
   background-size: 200% 40%;
 }
 

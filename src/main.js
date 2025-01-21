@@ -1,5 +1,7 @@
-const mountains = document.getElementsByClassName('sky-box')[0]
-const canvas = document.getElementsByTagName('canvas')[0]
+import Vector from "./Vector.js"
+
+const mountains = document.getElementById('sky-box')
+const canvas = document.getElementById('platno')
 const ctx = canvas.getContext('2d')
 
 const randSpread = range => range * (Math.random() - Math.random())
@@ -102,23 +104,6 @@ let dWorldRot = 0
 let loadedImages = 0
 
 /* CLASSES */
-
-class Vector {
-  constructor(x, y, z) {
-    this.x = x
-    this.y = y
-    this.z = z
-  }
-
-  rotate(ang) {
-    const cos = Math.cos(ang)
-    const sin = Math.sin(ang)
-    const { x } = this
-    const { z } = this
-    this.x = x * cos - z * sin
-    this.z = x * sin + z * cos
-  }
-}
 
 const camera = new Vector(cameraPos.x, cameraPos.y, cameraPos.z)
 
