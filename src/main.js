@@ -12,7 +12,7 @@ let worldRot = 0
 let dWorldRot = 0
 let loadedImages = 0
 
-/* FUNCTIONS */
+/* INIT */
 
 const createSprites = el => {
   for (let i = 0; i < el.number; ++i)
@@ -23,18 +23,14 @@ const loadImages = el => el.urls.forEach(url => {
   const img = new Image()
   img.src = url
   img.addEventListener('load', () => {
-    if (++loadedImages == totalImages) init()
+    if (++loadedImages < totalImages) return
+
+    elements.forEach(createSprites)
+    loop()
   })
 })
 
-/* INIT */
-
 elements.forEach(loadImages)
-
-function init() {
-  elements.forEach(createSprites)
-  loop()
-}
 
 /* LOOP */
 
