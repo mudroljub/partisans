@@ -1,6 +1,6 @@
-import Vector from "./Vector.js"
-import { elements } from "./data.js"
-import { platno, ctx } from "./platno.js"
+import Vector from './Vector.js'
+import { elements } from './data.js'
+import { platno, ctx } from './platno.js'
 
 const mountains = document.getElementById('sky-box')
 
