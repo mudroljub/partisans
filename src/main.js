@@ -12,7 +12,6 @@ const sprites = []
 const sensitivity = 0.04
 const cameraPos = { x: 0, y: -.9, z: -2 }
 
-let width, height
 let worldRot = 0
 let dWorldRot = 0
 let loadedImages = 0
@@ -43,16 +42,16 @@ class Sprite {
   }
 
   outOfBounds(z, x, y, xl, yl) {
-    return z <= camera.z || x < 0 || y < 0 || x >= width - xl || y >= height - yl
+    return z <= camera.z || x < 0 || y < 0 || x >= window.innerWidth - xl || y >= window.innerHeight - yl
   }
 
   project() {
-    const dz = height / (camera.z - this.v.z)
+    const dz = window.innerHeight / (camera.z - this.v.z)
     const px = (camera.x + this.v.x) * dz
     const py = (camera.y + this.v.y) * dz
     return {
-      x: px + width / 2,
-      y: py + height / 2,
+      x: px + window.innerWidth / 2,
+      y: py + window.innerHeight / 2,
       dz,
       z: this.v.z
     }
@@ -60,7 +59,7 @@ class Sprite {
 
   render() {
     const P = this.project()
-    const SZ = P.dz / height
+    const SZ = P.dz / window.innerHeight
     const X_OFFS = this.xl / 6
     if (this.outOfBounds(P.z, P.x + X_OFFS, P.y, this.xl * SZ, this.yl * SZ)) return
 
@@ -73,10 +72,8 @@ class Sprite {
 /* FUNCTIONS */
 
 const resize = () => {
-  width = window.innerWidth
-  height = window.innerHeight
-  canvas.width = width * devicePixelRatio | 0
-  canvas.height = height * devicePixelRatio | 0
+  canvas.width = window.innerWidth * devicePixelRatio | 0
+  canvas.height = window.innerHeight * devicePixelRatio | 0
   ctx.scale(devicePixelRatio, devicePixelRatio)
 }
 
@@ -108,7 +105,7 @@ function init() {
 function loop() {
   requestAnimationFrame(loop)
 
-  ctx.clearRect(0, 0, width, height)
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
   worldRot += dWorldRot
 
   mountains.style.backgroundPosition = -((worldRot / Math.PI) * 2) * 100 + '%'
@@ -122,8 +119,8 @@ function loop() {
 /* EVENTS */
 
 document.addEventListener('mousemove', e => {
-  const MOUSE_X = e.clientX - width / 2
-  dWorldRot = (-MOUSE_X / width) * sensitivity
+  const MOUSE_X = e.clientX - window.innerWidth / 2
+  dWorldRot = (-MOUSE_X / window.innerWidth) * sensitivity
 })
 
 window.onresize = resize
