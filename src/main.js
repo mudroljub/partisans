@@ -4,8 +4,6 @@ import Panorama from './Panorama.js'
 
 const sensitivity = 0.02
 const sprites = []
-
-let worldRot = 0
 let deltaRot = 0
 
 const randSpread = range => range * (Math.random() - Math.random())
@@ -33,8 +31,7 @@ loop()
 function loop() {
   requestAnimationFrame(loop)
 
-  worldRot += deltaRot
-  pozadina.render(worldRot)
+  pozadina.render(deltaRot)
 
   sprites
     .sort((a, b) => b.polozaj.z - a.polozaj.z)
