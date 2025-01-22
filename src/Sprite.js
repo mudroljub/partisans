@@ -7,9 +7,7 @@ const cameraPos = { x: 0, y: -.9, z: -2 }
 const camera = new Vector(cameraPos.x, cameraPos.y, cameraPos.z)
 
 export default class Sprite {
-  constructor(el, src) {
-    const origin = el.origin ? el.origin : { x: 0, y: 0, z: 0 }
-    const range = el.range ? el.range : { x: 10, y: 0, z: 10 }
+  constructor(src, { origin, range } = {}) {
     const x = origin.x + randSpread(range.x)
     const y = origin.y + randSpread(range.y)
     const z = origin.z + randSpread(range.z)
@@ -18,9 +16,9 @@ export default class Sprite {
     this.image = new Image()
     this.image.src = src
 
-    this.size = 2
-    this.xl = this.image.naturalWidth * this.size
-    this.yl = this.image.naturalHeight * this.size
+    this.skalar = 2
+    this.xl = this.image.naturalWidth * this.skalar
+    this.yl = this.image.naturalHeight * this.skalar
   }
 
   rotate(ang) {

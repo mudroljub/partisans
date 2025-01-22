@@ -16,8 +16,11 @@ let loadedImages = 0
 /* INIT */
 
 const createSprites = el => {
-  for (let i = 0; i < el.number; ++i)
-    sprites.push(new Sprite(el, el.urls[i % el.urls.length]))
+  for (let i = 0; i < el.number; ++i) {
+    const origin = el.origin ?? { x: 0, y: 0, z: 0 }
+    const range = el.range ?? { x: 10, y: 0, z: 10 }
+    sprites.push(new Sprite(el.urls[i % el.urls.length], { origin, range }))
+  }
 }
 
 const loadImages = el => el.urls.forEach(url => {
