@@ -31,7 +31,7 @@ loop()
 function loop() {
   requestAnimationFrame(loop)
 
-  pozadina.update(deltaRot)
+  pozadina.rotate(deltaRot)
   pozadina.render()
 
   sprites

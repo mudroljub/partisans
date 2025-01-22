@@ -15,7 +15,7 @@ export default class Panorama {
     return (this.rotacija * this.faktorPomeranja + this.slika.width) % this.slika.width
   }
 
-  update(ugao) {
+  rotate(ugao) {
     this.rotacija += ugao
   }
 
