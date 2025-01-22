@@ -31,7 +31,8 @@ loop()
 function loop() {
   requestAnimationFrame(loop)
 
-  pozadina.render(deltaRot)
+  pozadina.update(deltaRot)
+  pozadina.render()
 
   sprites
     .sort((a, b) => b.polozaj.z - a.polozaj.z)

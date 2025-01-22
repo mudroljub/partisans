@@ -17,8 +17,11 @@ export default class Panorama {
     return (this.worldRot * this.brzinaRotacije + this.slika.width) % this.slika.width
   }
 
-  render(deltaRot) {
+  update(deltaRot) {
     this.worldRot += deltaRot
+  }
+
+  render() {
     if (!this.slika.complete) return
 
     ctx.fillStyle = this.bojaNeba
