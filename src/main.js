@@ -37,7 +37,7 @@ function loop() {
   pozadina.render(worldRot)
 
   sprites
-    .sort((a, b) => b.position.z - a.position.z)
+    .sort((a, b) => b.polozaj.z - a.polozaj.z)
     .forEach(s => {
       s.rotate(deltaRot)
       s.render()
