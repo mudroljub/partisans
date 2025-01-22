@@ -4,20 +4,24 @@ export default class Panorama {
   constructor() {
     this.slika = new Image()
     this.slika.src = 'slike/planine.png'
+
+    this.bojaNeba = '#403'
+    this.bojaTla = '#030'
+    this.granicaTla = platno.height * 0.55
   }
 
   render(worldRot) {
-    const scaledWidth = window.innerWidth * 2
-    const scaledHeight = window.innerHeight * 0.4
-    const bgOffsetX = (worldRot / Math.PI * 2) * 100 % scaledWidth
+    if (!this.slika.complete) return
 
-    ctx.fillStyle = '#403'
-    ctx.fillRect(0, 0, platno.width, 300)
+    const bgOffsetX = ((worldRot / Math.PI * 2) * 100 + this.slika.width) % this.slika.width
 
-    ctx.fillStyle = '#030'
-    ctx.fillRect(0, 300, platno.width, platno.height)
+    ctx.fillStyle = this.bojaNeba
+    ctx.fillRect(0, 0, platno.width, this.granicaTla)
 
-    for (let x = bgOffsetX - scaledWidth; x < window.innerWidth; x += scaledWidth)
-      ctx.drawImage(this.slika, x, 100, scaledWidth, scaledHeight)
+    for (let x = bgOffsetX - this.slika.width; x < window.innerWidth; x += this.slika.width)
+      ctx.drawImage(this.slika, x, this.granicaTla - this.slika.height, this.slika.width, this.slika.height)
+
+    ctx.fillStyle = this.bojaTla
+    ctx.fillRect(0, this.granicaTla, platno.width, platno.height)
   }
 }
