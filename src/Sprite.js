@@ -16,7 +16,10 @@ export default class Sprite {
   }
 
   rotate(ang) {
-    this.position.rotate(ang)
+    const cos = Math.cos(ang)
+    const sin = Math.sin(ang)
+    this.position.x = this.position.x * cos - this.position.z * sin
+    this.position.z = this.position.x * sin + this.position.z * cos
   }
 
   outOfBounds(z, x, y, sirina, visina) {

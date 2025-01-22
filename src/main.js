@@ -6,7 +6,7 @@ const sensitivity = 0.02
 const sprites = []
 
 let worldRot = 0
-let dWorldRot = 0
+let deltaRot = 0
 
 const randSpread = range => range * (Math.random() - Math.random())
 
@@ -33,13 +33,13 @@ loop()
 function loop() {
   requestAnimationFrame(loop)
 
-  worldRot += dWorldRot * 10
+  worldRot += deltaRot
   pozadina.render(worldRot)
 
   sprites
     .sort((a, b) => b.position.z - a.position.z)
     .forEach(s => {
-      s.rotate(dWorldRot)
+      s.rotate(deltaRot)
       s.render()
     })
 }
@@ -48,5 +48,5 @@ function loop() {
 
 document.addEventListener('mousemove', e => {
   const MOUSE_X = e.clientX - window.innerWidth / 2
-  dWorldRot = (-MOUSE_X / window.innerWidth) * sensitivity
+  deltaRot = (-MOUSE_X / window.innerWidth) * sensitivity
 })
