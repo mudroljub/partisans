@@ -1,16 +1,10 @@
 import Vector from './Vector.js'
 import { ctx } from './platno.js'
 
-const randSpread = range => range * (Math.random() - Math.random())
-
-const cameraPos = { x: 0, y: -.9, z: -2 }
-const camera = new Vector(cameraPos.x, cameraPos.y, cameraPos.z)
+const camera = new Vector(0, -.9, -2)
 
 export default class Sprite {
-  constructor(src, { origin, range } = {}) {
-    const x = origin.x + randSpread(range.x)
-    const y = origin.y + randSpread(range.y)
-    const z = origin.z + randSpread(range.z)
+  constructor(src, { x, y, z } = {}) {
     this.position = new Vector(x, y, z)
 
     this.image = new Image()

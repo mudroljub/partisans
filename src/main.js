@@ -15,11 +15,16 @@ let loadedImages = 0
 
 /* INIT */
 
+const randSpread = range => range * (Math.random() - Math.random())
+
 const createSprites = el => {
   for (let i = 0; i < el.number; ++i) {
     const origin = el.origin ?? { x: 0, y: 0, z: 0 }
     const range = el.range ?? { x: 10, y: 0, z: 10 }
-    sprites.push(new Sprite(el.urls[i % el.urls.length], { origin, range }))
+    const x = origin.x + randSpread(range.x)
+    const y = origin.y + randSpread(range.y)
+    const z = origin.z + randSpread(range.z)
+    sprites.push(new Sprite(el.urls[i % el.urls.length], { x, y, z }))
   }
 }
 
