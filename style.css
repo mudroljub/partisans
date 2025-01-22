@@ -8,30 +8,8 @@ html, body, canvas, .gradient, .sky-box {
   content-zooming: none;
 }
 
-body {
-  background-color: #403;
-}
-
 .gradient {
   background-color: #fa0;
   z-index: 2;
   opacity: 0.3;
-}
-
-.sky-box {
-  z-index: -1;
-  background: url(slike/planine.png) 0% 0% fixed repeat-x;
-  background-size: 200% 40%;
-}
-
-.ground {
-  z-index: -1;
-  content: "";
-  position: fixed;
-  height: 50%;
-  left: -100%;
-  bottom: -8%;
-  width: 300%;
-  border-radius: 100%;
-  background-color: #030;
 }
