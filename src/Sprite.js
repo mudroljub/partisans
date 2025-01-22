@@ -11,16 +11,16 @@ export default class Sprite {
     this.image.src = src
 
     this.skalar = 2
-    this.xl = this.image.naturalWidth * this.skalar
-    this.yl = this.image.naturalHeight * this.skalar
+    this.sirina = this.image.naturalWidth * this.skalar
+    this.visina = this.image.naturalHeight * this.skalar
   }
 
   rotate(ang) {
     this.position.rotate(ang)
   }
 
-  outOfBounds(z, x, y, xl, yl) {
-    return z <= camera.z || x < 0 || y < 0 || x >= window.innerWidth - xl || y >= window.innerHeight - yl
+  outOfBounds(z, x, y, sirina, visina) {
+    return z <= camera.z || x < 0 || y < 0 || x >= window.innerWidth - sirina || y >= window.innerHeight - visina
   }
 
   project() {
@@ -37,9 +37,9 @@ export default class Sprite {
   render() {
     const P = this.project()
     const SZ = P.dz / window.innerHeight
-    const X_OFFS = this.xl / 6
-    if (this.outOfBounds(this.position.z, P.x + X_OFFS, P.y, this.xl * SZ, this.yl * SZ)) return
+    const X_OFFS = this.sirina / 6
+    if (this.outOfBounds(this.position.z, P.x + X_OFFS, P.y, this.sirina * SZ, this.visina * SZ)) return
 
-    ctx.drawImage(this.image, P.x + X_OFFS, P.y, this.xl * SZ, this.yl * SZ)
+    ctx.drawImage(this.image, P.x + X_OFFS, P.y, this.sirina * SZ, this.visina * SZ)
   }
 }
