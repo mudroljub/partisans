@@ -8,21 +8,23 @@ export default class Panorama {
     this.bojaNeba = '#403'
     this.bojaTla = '#030'
     this.granicaTla = platno.height * 0.55
-    this.brzinaRotacije = 10
+    this.brzinaRotacije = 500
 
     this.worldRot = 0
+  }
+
+  get bgOffsetX() {
+    return (this.worldRot * this.brzinaRotacije + this.slika.width) % this.slika.width
   }
 
   render(deltaRot) {
     this.worldRot += deltaRot
     if (!this.slika.complete) return
 
-    const bgOffsetX = ((this.worldRot * this.brzinaRotacije / Math.PI * 2) * 100 + this.slika.width) % this.slika.width
-
     ctx.fillStyle = this.bojaNeba
     ctx.fillRect(0, 0, platno.width, this.granicaTla)
 
-    for (let x = bgOffsetX - this.slika.width; x < window.innerWidth; x += this.slika.width)
+    for (let x = this.bgOffsetX - this.slika.width; x < window.innerWidth; x += this.slika.width)
       ctx.drawImage(this.slika, x, this.granicaTla - this.slika.height, this.slika.width, this.slika.height)
 
     ctx.fillStyle = this.bojaTla
