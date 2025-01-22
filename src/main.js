@@ -1,9 +1,6 @@
-import Sprite from './Sprite.js'
 import { elements } from './data.js'
-import { platno, ctx } from './platno.js'
-
-const bgImage = new Image()
-bgImage.src = 'slike/planine.png'
+import Sprite from './Sprite.js'
+import Panorama from './Panorama.js'
 
 const sensitivity = 0.02
 const sprites = []
@@ -11,9 +8,11 @@ const sprites = []
 let worldRot = 0
 let dWorldRot = 0
 
+const randSpread = range => range * (Math.random() - Math.random())
+
 /* INIT */
 
-const randSpread = range => range * (Math.random() - Math.random())
+const pozadina = new Panorama()
 
 const createSprites = el => {
   for (let i = 0; i < el.number; ++i) {
@@ -34,21 +33,8 @@ loop()
 function loop() {
   requestAnimationFrame(loop)
 
-  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
   worldRot += dWorldRot * 10
-
-  const scaledWidth = window.innerWidth * 2
-  const scaledHeight = window.innerHeight * 0.4
-  const bgOffsetX = (worldRot / Math.PI * 2) * 100 % scaledWidth
-
-  ctx.fillStyle = '#403'
-  ctx.fillRect(0, 0, platno.width, 300)
-
-  ctx.fillStyle = '#030'
-  ctx.fillRect(0, 300, platno.width, platno.height)
-
-  for (let x = bgOffsetX - scaledWidth; x < window.innerWidth; x += scaledWidth)
-    ctx.drawImage(bgImage, x, 100, scaledWidth, scaledHeight)
+  pozadina.render(worldRot)
 
   sprites
     .sort((a, b) => b.position.z - a.position.z)
