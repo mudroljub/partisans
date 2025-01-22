@@ -15,9 +15,9 @@ export default class Sprite {
     this.slika.src = src
   }
 
-  rotate(ang) {
-    const cos = Math.cos(ang)
-    const sin = Math.sin(ang)
+  rotate(ugao) {
+    const cos = Math.cos(ugao)
+    const sin = Math.sin(ugao)
     this.polozaj.x = this.polozaj.x * cos - this.polozaj.z * sin
     this.polozaj.z = this.polozaj.x * sin + this.polozaj.z * cos
   }

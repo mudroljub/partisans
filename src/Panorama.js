@@ -4,21 +4,19 @@ export default class Panorama {
   constructor() {
     this.slika = new Image()
     this.slika.src = 'slike/planine.png'
-
     this.bojaNeba = '#403'
     this.bojaTla = '#030'
     this.granicaTla = platno.height * 0.55
-    this.brzinaRotacije = 500
-
-    this.worldRot = 0
+    this.rotacija = 0
+    this.faktorPomeranja = 500
   }
 
   get bgOffsetX() {
-    return (this.worldRot * this.brzinaRotacije + this.slika.width) % this.slika.width
+    return (this.rotacija * this.faktorPomeranja + this.slika.width) % this.slika.width
   }
 
-  update(deltaRot) {
-    this.worldRot += deltaRot
+  update(ugao) {
+    this.rotacija += ugao
   }
 
   render() {
