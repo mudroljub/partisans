@@ -1,4 +1,4 @@
-html, body, canvas, .gradient, .sky-box {
+html, body, canvas, .overlay, .sky-box {
   margin: 0;
   width: 100%;
   height: 100%;
@@ -8,7 +8,7 @@ html, body, canvas, .gradient, .sky-box {
   content-zooming: none;
 }
 
-.gradient {
+.overlay {
   background-color: #fa0;
   z-index: 2;
   opacity: 0.3;
