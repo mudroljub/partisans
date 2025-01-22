@@ -6,8 +6,8 @@ const bgImage = new Image()
 bgImage.src = 'slike/planine.png'
 
 const totalImages = elements.reduce((acc, el) => acc + el.urls.length, 0)
+const sensitivity = 0.02
 const sprites = []
-const sensitivity = 0.04
 
 let worldRot = 0
 let dWorldRot = 0
@@ -17,7 +17,7 @@ let loadedImages = 0
 
 const createSprites = el => {
   for (let i = 0; i < el.number; ++i)
-    sprites.push(new Sprite(el))
+    sprites.push(new Sprite(el, el.urls[i % el.urls.length]))
 }
 
 const loadImages = el => el.urls.forEach(url => {

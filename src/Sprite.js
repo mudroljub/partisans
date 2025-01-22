@@ -7,7 +7,7 @@ const cameraPos = { x: 0, y: -.9, z: -2 }
 const camera = new Vector(cameraPos.x, cameraPos.y, cameraPos.z)
 
 export default class Sprite {
-  constructor(el) {
+  constructor(el, src) {
     const origin = el.origin ? el.origin : { x: 0, y: 0, z: 0 }
     const range = el.range ? el.range : { x: 10, y: 0, z: 10 }
     const x = origin.x + randSpread(range.x)
@@ -16,7 +16,7 @@ export default class Sprite {
     this.position = new Vector(x, y, z)
 
     this.image = new Image()
-    this.image.src = el.urls[(Math.random() * el.urls.length) | 0]
+    this.image.src = src
 
     this.size = 2
     this.xl = this.image.naturalWidth * this.size
@@ -33,13 +33,12 @@ export default class Sprite {
 
   project() {
     const dz = window.innerHeight / (camera.z - this.position.z)
-    const px = (camera.x + this.position.x) * dz
-    const py = (camera.y + this.position.y) * dz
+    const x = (camera.x + this.position.x) * dz + window.innerWidth / 2
+    const y = (camera.y + this.position.y) * dz + window.innerHeight / 2
     return {
-      x: px + window.innerWidth / 2,
-      y: py + window.innerHeight / 2,
+      x,
+      y,
       dz,
-      z: this.position.z
     }
   }
 
@@ -47,10 +46,8 @@ export default class Sprite {
     const P = this.project()
     const SZ = P.dz / window.innerHeight
     const X_OFFS = this.xl / 6
-    if (this.outOfBounds(P.z, P.x + X_OFFS, P.y, this.xl * SZ, this.yl * SZ)) return
+    if (this.outOfBounds(this.position.z, P.x + X_OFFS, P.y, this.xl * SZ, this.yl * SZ)) return
 
-    ctx.beginPath()
     ctx.drawImage(this.image, P.x + X_OFFS, P.y, this.xl * SZ, this.yl * SZ)
-    ctx.closePath()
   }
 }
