@@ -5,13 +5,11 @@ import { platno, ctx } from './platno.js'
 const bgImage = new Image()
 bgImage.src = 'slike/planine.png'
 
-const totalImages = elements.reduce((acc, el) => acc + el.urls.length, 0)
 const sensitivity = 0.02
 const sprites = []
 
 let worldRot = 0
 let dWorldRot = 0
-let loadedImages = 0
 
 /* INIT */
 
@@ -28,18 +26,8 @@ const createSprites = el => {
   }
 }
 
-const loadImages = el => el.urls.forEach(url => {
-  const img = new Image()
-  img.src = url
-  img.addEventListener('load', () => {
-    if (++loadedImages < totalImages) return
-
-    elements.forEach(createSprites)
-    loop()
-  })
-})
-
-elements.forEach(loadImages)
+elements.forEach(createSprites)
+loop()
 
 /* LOOP */
 

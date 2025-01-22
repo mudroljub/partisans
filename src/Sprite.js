@@ -4,15 +4,15 @@ import { ctx } from './platno.js'
 const camera = new Vector(0, -.9, -2)
 
 export default class Sprite {
-  constructor(src, { x, y, z } = {}) {
+  constructor(src, { x, y, z, skalar = 2 } = {}) {
     this.position = new Vector(x, y, z)
-
-    this.image = new Image()
-    this.image.src = src
-
-    this.skalar = 2
-    this.sirina = this.image.naturalWidth * this.skalar
-    this.visina = this.image.naturalHeight * this.skalar
+    this.skalar = skalar
+    this.slika = new Image()
+    this.slika.onload = () => {
+      this.sirina = this.slika.naturalWidth * this.skalar
+      this.visina = this.slika.naturalHeight * this.skalar
+    }
+    this.slika.src = src
   }
 
   rotate(ang) {
@@ -40,6 +40,6 @@ export default class Sprite {
     const X_OFFS = this.sirina / 6
     if (this.outOfBounds(this.position.z, P.x + X_OFFS, P.y, this.sirina * SZ, this.visina * SZ)) return
 
-    ctx.drawImage(this.image, P.x + X_OFFS, P.y, this.sirina * SZ, this.visina * SZ)
+    ctx.drawImage(this.slika, P.x + X_OFFS, P.y, this.sirina * SZ, this.visina * SZ)
   }
 }
