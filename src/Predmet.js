@@ -25,12 +25,10 @@ export default class Predmet {
 
   project() {
     const dz = window.innerHeight / (camera.z - this.polozaj.z)
-    const x = (camera.x + this.polozaj.x) * dz + window.innerWidth / 2
-    const y = (camera.y + this.polozaj.y) * dz + window.innerHeight / 2
     return {
-      x,
-      y,
       dz,
+      x: (camera.x + this.polozaj.x) * dz + window.innerWidth / 2,
+      y: (camera.y + this.polozaj.y) * dz + window.innerHeight / 2,
     }
   }
 

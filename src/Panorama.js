@@ -8,7 +8,7 @@ export default class Panorama {
     this.bojaTla = '#030'
     this.granicaTla = platno.height * 0.55
     this.rotacija = 0
-    this.faktorPomeranja = 500
+    this.faktorPomeranja = 700
   }
 
   get bgOffsetX() {
