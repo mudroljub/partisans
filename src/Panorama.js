@@ -1,4 +1,5 @@
 import { platno, ctx } from './platno.js'
+import { camera } from './Predmet.js'
 
 export default class Panorama {
   constructor() {
@@ -7,16 +8,11 @@ export default class Panorama {
     this.bojaNeba = '#403'
     this.bojaTla = '#030'
     this.granicaTla = platno.height * 0.55
-    this.rotacija = 0
     this.faktorPomeranja = 700
   }
 
   get bgOffsetX() {
-    return (this.rotacija * this.faktorPomeranja + this.slika.width) % this.slika.width
-  }
-
-  rotate(ugao) {
-    this.rotacija += ugao
+    return (camera.rotation * this.faktorPomeranja + this.slika.width) % this.slika.width
   }
 
   render() {

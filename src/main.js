@@ -1,5 +1,5 @@
 import { elements } from './data.js'
-import Predmet from './Predmet.js'
+import Predmet, { camera } from './Predmet.js'
 import Panorama from './Panorama.js'
 
 const sensitivity = 0.02
@@ -30,16 +30,13 @@ loop()
 
 function loop() {
   requestAnimationFrame(loop)
+  camera.rotation += deltaRot
 
-  pozadina.rotate(deltaRot)
   pozadina.render()
 
   sprites
     .sort((a, b) => b.polozaj.z - a.polozaj.z)
-    .forEach(s => {
-      s.rotate(deltaRot)
-      s.render()
-    })
+    .forEach(s => s.render())
 }
 
 /* EVENTS */
