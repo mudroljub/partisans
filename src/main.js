@@ -1,5 +1,5 @@
 import { elements } from './data.js'
-import Sprite from './Sprite.js'
+import Predmet from './Predmet.js'
 import Panorama from './Panorama.js'
 
 const sensitivity = 0.02
@@ -19,7 +19,7 @@ const createSprites = el => {
     const x = origin.x + randSpread(range.x)
     const y = origin.y + randSpread(range.y)
     const z = origin.z + randSpread(range.z)
-    sprites.push(new Sprite(el.urls[i % el.urls.length], { x, y, z }))
+    sprites.push(new Predmet(el.urls[i % el.urls.length], { x, y, z }))
   }
 }
 

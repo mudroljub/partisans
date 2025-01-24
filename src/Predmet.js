@@ -3,7 +3,7 @@ import { ctx } from './platno.js'
 
 const camera = new Vector(0, -.9, -2)
 
-export default class Sprite {
+export default class Predmet {
   constructor(src, { x, y, z, skalar = 2 } = {}) {
     this.polozaj = new Vector(x, y, z)
     this.skalar = skalar
