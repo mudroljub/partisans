@@ -1,5 +1,5 @@
 import { platno, ctx } from './platno.js'
-import { camera } from './Predmet.js'
+import { camera } from './Camera.js'
 
 export default class Panorama {
   constructor() {

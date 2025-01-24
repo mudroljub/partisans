@@ -1,6 +1,7 @@
 import { elements } from './data.js'
-import Predmet, { camera } from './Predmet.js'
+import Predmet from './Predmet.js'
 import Panorama from './Panorama.js'
+import { camera } from './Camera.js'
 
 const sensitivity = 0.02
 const sprites = []

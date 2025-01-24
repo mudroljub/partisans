@@ -1,8 +1,6 @@
 import Vector from './Vector.js'
 import { ctx } from './platno.js'
-
-export const camera = new Vector(0, -.9, -2)
-camera.rotation = 0
+import { camera } from './Camera.js'
 
 export default class Predmet {
   constructor(src, { x, y, z, skalar = 2 } = {}) {
