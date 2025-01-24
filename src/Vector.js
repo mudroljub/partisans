@@ -4,4 +4,11 @@ export default class Vector {
     this.y = y
     this.z = z
   }
+
+  rotate(ugao) {
+    const cos = Math.cos(ugao)
+    const sin = Math.sin(ugao)
+    this.x = this.x * cos - this.z * sin
+    this.z = this.x * sin + this.z * cos
+  }
 }
