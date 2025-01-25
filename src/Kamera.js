@@ -3,7 +3,7 @@ import Vector from './Vector.js'
 export class Kamera extends Vector {
   constructor() {
     super(0, -.9, -2)
-    this.rotation = 0
+    this.rotacija = 0
   }
 }
 

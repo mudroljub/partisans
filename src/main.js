@@ -31,7 +31,7 @@ loop()
 
 function loop() {
   requestAnimationFrame(loop)
-  kamera.rotation += deltaRot
+  kamera.rotacija += deltaRot
 
   pozadina.rotate(deltaRot)
   pozadina.render()
