@@ -1,6 +1,7 @@
 import { elements } from './data.js'
 import Predmet from './Predmet.js'
 import Panorama from './Panorama.js'
+import { kamera } from './Kamera.js'
 
 const sensitivity = 0.02
 const sprites = []
@@ -30,6 +31,7 @@ loop()
 
 function loop() {
   requestAnimationFrame(loop)
+  kamera.rotation += deltaRot
 
   pozadina.rotate(deltaRot)
   pozadina.render()
