@@ -1,6 +1,6 @@
 import Vector from './Vector.js'
 import { ctx } from './platno.js'
-import { camera } from './Camera.js'
+import { kamera } from './Kamera.js'
 
 export default class Predmet {
   constructor(src, { x, y, z, skalar = 2 } = {}) {
@@ -15,19 +15,19 @@ export default class Predmet {
   }
 
   outOfBounds(z, x, y, sirina, visina) {
-    return z <= camera.z || x < 0 || y < 0 || x >= window.innerWidth - sirina || y >= window.innerHeight - visina
+    return z <= kamera.z || x < 0 || y < 0 || x >= window.innerWidth - sirina || y >= window.innerHeight - visina
   }
 
   project() {
-    const cos = Math.cos(camera.rotation)
-    const sin = Math.sin(camera.rotation)
+    const cos = Math.cos(kamera.rotation)
+    const sin = Math.sin(kamera.rotation)
     const rotatedX = this.polozaj.x * cos - this.polozaj.z * sin
     const rotatedZ = this.polozaj.x * sin + this.polozaj.z * cos
-    const dz = window.innerHeight / (camera.z - rotatedZ)
+    const dz = window.innerHeight / (kamera.z - rotatedZ)
     return {
       dz,
-      x: (camera.x + rotatedX) * dz + window.innerWidth / 2,
-      y: (camera.y + this.polozaj.y) * dz + window.innerHeight / 2,
+      x: (kamera.x + rotatedX) * dz + window.innerWidth / 2,
+      y: (kamera.y + this.polozaj.y) * dz + window.innerHeight / 2,
     }
   }
 

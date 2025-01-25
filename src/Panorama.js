@@ -1,5 +1,5 @@
 import { platno, ctx } from './platno.js'
-import { camera } from './Camera.js'
+import { kamera } from './Kamera.js'
 
 export default class Panorama {
   constructor() {
@@ -12,7 +12,7 @@ export default class Panorama {
   }
 
   get bgOffsetX() {
-    return (camera.rotation * this.faktorPomeranja + this.slika.width) % this.slika.width
+    return (kamera.rotation * this.faktorPomeranja + this.slika.width) % this.slika.width
   }
 
   render() {
